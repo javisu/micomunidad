@@ -1,1 +1,6 @@
-show.html.erb
+<% for foto in @galeria.fotos %>
+  <a href= <%= foto.image_url()  %> rel="gallery">
+    <img src= <%= foto.image_url(:thumb)  %> class="img-polaroid" />
+  </a>
+   
+<% end %>
