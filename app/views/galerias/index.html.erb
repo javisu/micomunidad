@@ -1,0 +1,10 @@
+<h><%= "Galerias" %></h>
+
+<% for galeria in @galerias %>
+  <div class="galeria">
+    <h2><%= link_to galeria.titulo, galeria %></h2>
+    Fotos: <%= galeria.fotos.size %>
+  </div>
+<% end %>
+
+<p><%= link_to "Nueva Galeria", new_galeria_path %></p>

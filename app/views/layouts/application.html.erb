@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Galeria Snoopy</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag 'http://blueimp.github.com/cdn/css/bootstrap.min.css' %>
+  <%= stylesheet_link_tag '/javascripts/jquery-file-upload/css/style.css' %>
+  <%= stylesheet_link_tag "http://blueimp.github.com/cdn/css/bootstrap-responsive.min.css" %>
+  <%= stylesheet_link_tag "http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css" %>
+  <%= stylesheet_link_tag "http://blueimp.github.com/Bootstrap-Image-Gallery/css/bootstrap-image-gallery.min.css" %>
+  <%= stylesheet_link_tag "/javascripts/jquery-file-upload/css/jquery.fileupload-ui.css" %>
+  <%= javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js" %>
+
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js' %>
+
+
+  <%= javascript_include_tag 'http://blueimp.github.com/JavaScript-Templates/tmpl.min.js' %>
+  <%= javascript_include_tag 'http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js' %>
+
+  <%= javascript_include_tag '/javascripts/jquery-file-upload/js/jquery.iframe-transport.js' %>
+  <%= javascript_include_tag '/javascripts/jquery-file-upload/js/jquery.fileupload.js' %>
+  <%= javascript_include_tag '/javascripts/jquery-file-upload/js/jquery.fileupload-ui.js' %>
+
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js">
+
+@import "bootstrap/image-gallery";
+@import "bootstrap"
+</script>
+
+<body>
+	<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Galeria Snoopy</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Crear Grupo", new_group_path %></li>
+          <li><%= link_to "Galerias", galerias_path %></li>
+          <% if current_user %>
+            <li> Hola <%= current_user.email %> </li>
+            <li> <%= link_to "Log out", logout_path %> </li>
+          <% else %>
+            <li> <%= link_to "Sign up", signup_path %> </li>
+             <a class="btn btn-primary" data-toggle="modal" href="#myModal" >Login</a> 
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal hide" id="myModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Login to MyWebsite.com</h3>
+  </div>
+  <div class="modal-body">
+    <%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="field">
+    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <%= label_tag :remember_me %>
+  </div>
+    <%= submit_tag "Entrar", :class => "btn btn-primary" %>
+<% end %>
+    
+  </div>
+  <div class="modal-footer">
+    New To MyWebsite.com?
+    <a href="#" class="btn btn-primary">Register</a>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>        
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
